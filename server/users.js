@@ -38,10 +38,18 @@ function getOtherUsers (id) {
 //   return user;
 // }
 
+function removeUser (id) {
+  const user = userFromId(id);
+  const index = users.findIndex(userToRemove => userToRemove.id === id);
+  users.splice(index, 1);
+  return user;
+}
+
 module.exports = {
   users,
   createUser,
   userFromId,
   getOtherUsers,
   // updatePosition
+  removeUser
 };

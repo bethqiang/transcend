@@ -31,7 +31,7 @@ module.exports = io => {
 
     socket.on('disconnect', () => {
       console.log(chalk.magenta(`${socket.id} has disconnected (╥﹏╥)`));
-      // need to remove user from users array
+      socket.broadcast.emit('removeUser', users.removeUser(id));
     });
 
   });

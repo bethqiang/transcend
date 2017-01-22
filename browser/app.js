@@ -57,3 +57,11 @@ socket.on('newUser', user => {
 //   const otherAvatar = document.querySelector(`#${user.id}`);
 //   otherAvatar.setAttribute('position', `${user.x} ${user.y} ${user.z}`);
 // });
+
+// Remove a user's avatar when they disconnect from the server
+socket.on('removeUser', user => {
+  console.log('Removing user.');
+  const avatarToBeRemoved = document.querySelector(`#${user.id}`);
+  scene.remove(avatarToBeRemoved); // Remove from scene
+  avatarToBeRemoved.parentNode.removeChild(avatarToBeRemoved); // Remove from DOM
+});
