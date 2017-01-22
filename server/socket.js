@@ -23,11 +23,16 @@ module.exports = io => {
       socket.emit('getOthersCallback', users.getOtherUsers(id));
     });
 
+    socket.on('haveGottenOthers', () => {
+      socket.emit('startTick');
+    });
+
     // This will update a user's position when they move, and send it to everyone
     // except the specific scene's user
-    // socket.on('tick', userData => {
-    //   socket.broadcast.emit('updatePosition', users.updatePosition(userData));
-    // });
+    socket.on('tick', userData => {
+      users.updatePosition(userData);
+      // socket.emit('updatePosition', users.updatePosition(userData));
+    });
 
     socket.on('disconnect', () => {
       console.log(chalk.magenta(`${socket.id} has disconnected (╥﹏╥)`));

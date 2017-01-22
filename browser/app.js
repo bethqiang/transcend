@@ -38,6 +38,7 @@ socket.on('getOthersCallback', users => {
     avatar.setAttribute('color', users[i].color);
     avatar.setAttribute('position', `${users[i].x} ${users[i].y} ${users[i].z}`);
   }
+  socket.emit('haveGottenOthers');
 });
 
 // For those who are already there, this will update if someone new connects
@@ -52,11 +53,11 @@ socket.on('newUser', user => {
 
 // For other users except the one that the scene belongs to, update the
 // scene for the user that moved
-// socket.on('updatePosition', user => {
-//   console.log('Updating position...');
-//   const otherAvatar = document.querySelector(`#${user.id}`);
-//   otherAvatar.setAttribute('position', `${user.x} ${user.y} ${user.z}`);
-// });
+socket.on('updatePosition', user => {
+  console.log('Updating position...');
+  const otherAvatar = document.querySelector(`#${user.id}`);
+  otherAvatar.setAttribute('position', `${user.x} ${user.y} ${user.z}`);
+});
 
 // Remove a user's avatar when they disconnect from the server
 socket.on('removeUser', user => {

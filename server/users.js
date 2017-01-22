@@ -27,16 +27,17 @@ function userFromId (id) {
 }
 
 function getOtherUsers (id) {
+  console.log('getOtherUsers', users);
   return users.filter(user => user.id !== id);
 }
 
-// function updatePosition (userData) {
-//   const user = userFromId(userData.id);
-//   user.x = userData.position.x;
-//   user.y = userData.position.y;
-//   user.z = userData.position.z;
-//   return user;
-// }
+function updatePosition (userData) {
+  const user = userFromId(userData.id);
+  user.x = userData.position.x;
+  user.y = userData.position.y;
+  user.z = userData.position.z;
+  return user;
+}
 
 function removeUser (id) {
   const user = userFromId(id);
@@ -50,6 +51,6 @@ module.exports = {
   createUser,
   userFromId,
   getOtherUsers,
-  // updatePosition
+  updatePosition,
   removeUser
 };
