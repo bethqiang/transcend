@@ -30,9 +30,18 @@ function getOtherUsers (id) {
   return users.filter(user => user.id !== id);
 }
 
+// function updatePosition (userData) {
+//   const user = userFromId(userData.id);
+//   user.x = userData.position.x;
+//   user.y = userData.position.y;
+//   user.z = userData.position.z;
+//   return user;
+// }
+
 module.exports = {
   users,
   createUser,
   userFromId,
-  getOtherUsers
+  getOtherUsers,
+  // updatePosition
 };
