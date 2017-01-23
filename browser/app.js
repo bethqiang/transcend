@@ -16,7 +16,6 @@ socket.on('connect', () => {
   console.log('Ahoy, matey! You\'ve made a persistent two-way connection to the server!');
   socket.on('createUser', user => {
     let avatar = document.createElement('a-box');
-    console.log(user);
     scene.appendChild(avatar);
     avatar.setAttribute('id', user.id);
     avatar.setAttribute('color', user.color);

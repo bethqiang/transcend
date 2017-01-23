@@ -7,14 +7,48 @@
     <script src="https://aframe.io/releases/0.4.0/aframe.min.js"></script>
     <script src="socket.io/socket.io.js"></script>
     <script src="publish-location.js"></script>
+    <script src="ground.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+
+      <a-assets>
+        <a-asset-item id="mountains" src="models/mountains.dae"></a-asset-item>
+        <a-asset-item id="tree" src="models/tree.dae"></a-asset-item>
+      </a-assets>
+
+      <a-collada-model src="#mountains" position="0 0 -20" scale="1 1 1" rotation="0 350 0"></a-collada-model>
+      <a-collada-model src="#mountains" position="-10 0 -15" scale="1 1 1" rotation="0 120 0"></a-collada-model>
+      <a-collada-model src="#mountains" position="-20 0 -20" scale="1 1 1" rotation="0 240 0"></a-collada-model>
+      <a-collada-model src="#mountains" position="-15 0 -15" scale="1 1 1" rotation="0 0 0"></a-collada-model>
+      <a-collada-model src="#tree" position="0 0.9 0" scale="1 1.2 1" rotation="0 0 0"></a-collada-model>
+      <a-collada-model src="#tree" position="1 0.7 9" scale="1 1 1" rotation="0 150 0"></a-collada-model>
+      <a-collada-model src="#tree" position="2 0.7 -2" scale="1 1 1" rotation="0 295 0"></a-collada-model>
+      <a-collada-model src="#tree" position="-2 0.9 10" scale="1 1.2 1" rotation="0 328 0"></a-collada-model>
+      <a-collada-model src="#tree" position="6 0.7 3" scale="1 1 1" rotation="0 26 0"></a-collada-model>
+      <a-collada-model src="#tree" position="-4 0.7 8" scale="1 1 1" rotation="0 174 0"></a-collada-model>
+      <a-collada-model src="#tree" position="2 0.9 10" scale="1 1.2 1" rotation="0 83 0"></a-collada-model>
+      <a-collada-model src="#tree" position="9 0.7 -1" scale="1 1 1" rotation="0 201 0"></a-collada-model>
+      <a-collada-model src="#tree" position="4 0.7 4" scale="1 1 1" rotation="0 46 0"></a-collada-model>
+      <a-collada-model src="#tree" position="-10 0.7 -2" scale="1 1 1" rotation="0 206 0"></a-collada-model>
+      <a-collada-model src="#tree" position="3 0.9 6" scale="1 1.2 1" rotation="0 216 0"></a-collada-model>
+      <a-collada-model src="#tree" position="4 0.7 5" scale="1 1 1" rotation="0 156 0"></a-collada-model>
+      <a-collada-model src="#tree" position="-7 0.7 8" scale="1 1 1" rotation="0 105 0"></a-collada-model>
+      <a-collada-model src="#tree" position="9 0.7 1" scale="1 1 1" rotation="0 54 0"></a-collada-model>
+      <a-collada-model src="#tree" position="4 0.9 7" scale="1 1.2 1" rotation="0 265 0"></a-collada-model>
+      <a-collada-model src="#tree" position="10 0.7 -7" scale="1 1 1" rotation="0 124 0"></a-collada-model>
+      <a-collada-model src="#tree" position="-9 0.7 9" scale="1 1 1" rotation="0 16 0"></a-collada-model>
+      <a-collada-model src="#tree" position="1 0.7 0" scale="1 1 1" rotation="0 334 0"></a-collada-model>
+      <a-collada-model src="#tree" position="9 0.9 -2" scale="1 1.2 1" rotation="0 170 0"></a-collada-model>
+      <a-collada-model src="#tree" position="1 0.7 -3" scale="1 1 1" rotation="0 168 0"></a-collada-model>
+      <a-collada-model src="#tree" position="3 0.7 4" scale="1 1 1" rotation="0 95 0"></a-collada-model>
+      <a-collada-model src="#tree" position="-4 0.9 5" scale="1 1.2 1" rotation="0 298 0"></a-collada-model>
+      <a-entity ground position="0 0 0"></a-entity>
+      <a-box position="7 1.25 -13" rotation="0 90 0" scale="2 2 2" color="#4CC3D9"></a-box>
+      <a-sphere position="12 3 -17" radius="1.25" scale="2 2 2" color="#EF2D5E"></a-sphere>
+      <a-cylinder position="11 1.75 -12" radius="0.5" scale="2 2 2" height="1.5" color="#FFC65D"></a-cylinder>
+      <a-sky color="#BBF2FF"></a-sky>
+      <a-entity light="type: ambient; color: #CCC"></a-entity>
     </a-scene>
 
     <script src="app.js"></script>

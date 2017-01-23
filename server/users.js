@@ -4,9 +4,9 @@ const users = [];
 function User (id) {
   this.id = id;
   this.color = randomcolor();
-  this.x = Math.random() * 10 - 5;
-  this.y = 0;
-  this.z = Math.random() * 5 - 5;
+  this.x = 4;
+  this.y = 1.6;
+  this.z = -4;
   this.xrot = 0;
   this.yrot = 0;
   this.zrot = 0;
@@ -35,7 +35,6 @@ function getOtherUsers (id) {
 
 function updatePosition (userData) {
   const user = userFromId(userData.id);
-  console.log(userData);
   user.x = userData.position.x;
   user.y = userData.position.y;
   user.z = userData.position.z;
