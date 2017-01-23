@@ -9,7 +9,7 @@ AFRAME.registerComponent('publish-location', {
     socket.on('startTick', () => hasGottenOthers = true);
     if (hasGottenOthers) {
       const el = this.el;
-      socket.emit('tick', { id: el.id, position: el.getAttribute('position') });
+      socket.emit('tick', { id: el.id, position: el.getAttribute('position'), rotation: el.getAttribute('rotation') });
     }
   }
 });

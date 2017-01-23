@@ -16,10 +16,12 @@ socket.on('connect', () => {
   console.log('Ahoy, matey! You\'ve made a persistent two-way connection to the server!');
   socket.on('createUser', user => {
     let avatar = document.createElement('a-box');
+    console.log(user);
     scene.appendChild(avatar);
     avatar.setAttribute('id', user.id);
     avatar.setAttribute('color', user.color);
     avatar.setAttribute('position', `${user.x} ${user.y} ${user.z}`);
+    avatar.setAttribute('rotation', `${user.xrot} ${user.yrot} ${user.zrot}`);
     avatar.setAttribute('publish-location', true);
     avatar.setAttribute('camera', true);
     avatar.setAttribute('look-controls', true);
@@ -37,6 +39,7 @@ socket.on('getOthersCallback', users => {
     avatar.setAttribute('id', users[i].id);
     avatar.setAttribute('color', users[i].color);
     avatar.setAttribute('position', `${users[i].x} ${users[i].y} ${users[i].z}`);
+    avatar.setAttribute('rotation', `${users[i].xrot} ${users[i].yrot} ${users[i].zrot}`);
   }
   // This goes to the server, and then goes to `publish-location` to tell the `tick` to start
   socket.emit('haveGottenOthers');
@@ -54,6 +57,7 @@ socket.on('newUser', user => {
   avatar.setAttribute('id', user.id);
   avatar.setAttribute('color', user.color);
   avatar.setAttribute('position', `${user.x} ${user.y} ${user.z}`);
+  avatar.setAttribute('rotation', `${user.xrot} ${user.yrot} ${user.zrot}`);
 });
 
 // This comes back with a user array of all users but the one viewing the scene
@@ -68,13 +72,8 @@ socket.on('usersUpdated', users => {
   for (let i = 0; i < users.length; i++) {
     const otherAvatar = document.querySelector(`#${users[i].id}`);
     otherAvatar.setAttribute('position', `${users[i].x} ${users[i].y} ${users[i].z}`);
+    otherAvatar.setAttribute('rotation', `${users[i].xrot} ${users[i].yrot} ${users[i].zrot}`);
   }
-});
-
-socket.on('getPositions', user => {
-  console.log('Updating position...');
-  const otherAvatar = document.querySelector(`#${user.id}`);
-  otherAvatar.setAttribute('position', `${user.x} ${user.y} ${user.z}`);
 });
 
 // Remove a user's avatar when they disconnect from the server

@@ -7,6 +7,9 @@ function User (id) {
   this.x = Math.random() * 10 - 5;
   this.y = 0;
   this.z = Math.random() * 5 - 5;
+  this.xrot = 0;
+  this.yrot = 0;
+  this.zrot = 0;
 }
 
 function createUser (id) {
@@ -32,9 +35,13 @@ function getOtherUsers (id) {
 
 function updatePosition (userData) {
   const user = userFromId(userData.id);
+  console.log(userData);
   user.x = userData.position.x;
   user.y = userData.position.y;
   user.z = userData.position.z;
+  user.xrot = userData.rotation.x;
+  user.yrot = userData.rotation.y;
+  user.zrot = userData.rotation.z;
   return user;
 }
 

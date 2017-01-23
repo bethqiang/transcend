@@ -35,9 +35,10 @@ module.exports = io => {
     // except the specific scene's user
     socket.on('tick', userData => {
       users.updatePosition(userData);
-      // socket.emit('updatePosition', users.updatePosition(userData));
     });
 
+    // This will send an array of users except for the specific scene's user
+    // Used to update position and rotation every x interval, as specified by the front-end
     socket.on('getUpdate', () => {
       socket.emit('usersUpdated', users.getOtherUsers(id));
     });
