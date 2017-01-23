@@ -38,7 +38,12 @@ socket.on('getOthersCallback', users => {
     avatar.setAttribute('color', users[i].color);
     avatar.setAttribute('position', `${users[i].x} ${users[i].y} ${users[i].z}`);
   }
+  // This goes to the server, and then goes to `publish-location` to tell the `tick` to start
   socket.emit('haveGottenOthers');
+  // This goes to the server, and then back to the function with the setInterval
+  // Needed an intermediary for between when the other components are put on the DOM
+  // and the start of the interval loop
+  socket.emit('readyToReceiveUpdates');
 });
 
 // For those who are already there, this will update if someone new connects
@@ -51,9 +56,22 @@ socket.on('newUser', user => {
   avatar.setAttribute('position', `${user.x} ${user.y} ${user.z}`);
 });
 
-// For other users except the one that the scene belongs to, update the
-// scene for the user that moved
-socket.on('updatePosition', user => {
+// This comes back with a user array of all users but the one viewing the scene
+socket.on('startTheInterval', () => {
+  setInterval(() => {
+    socket.emit('getUpdate');
+  }, 50);
+});
+
+socket.on('usersUpdated', users => {
+  console.log('Updating position for all users');
+  for (let i = 0; i < users.length; i++) {
+    const otherAvatar = document.querySelector(`#${users[i].id}`);
+    otherAvatar.setAttribute('position', `${users[i].x} ${users[i].y} ${users[i].z}`);
+  }
+});
+
+socket.on('getPositions', user => {
   console.log('Updating position...');
   const otherAvatar = document.querySelector(`#${user.id}`);
   otherAvatar.setAttribute('position', `${user.x} ${user.y} ${user.z}`);

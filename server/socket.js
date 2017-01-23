@@ -27,11 +27,19 @@ module.exports = io => {
       socket.emit('startTick');
     });
 
+    socket.on('readyToReceiveUpdates', () => {
+      socket.emit('startTheInterval');
+    });
+
     // This will update a user's position when they move, and send it to everyone
     // except the specific scene's user
     socket.on('tick', userData => {
       users.updatePosition(userData);
       // socket.emit('updatePosition', users.updatePosition(userData));
+    });
+
+    socket.on('getUpdate', () => {
+      socket.emit('usersUpdated', users.getOtherUsers(id));
     });
 
     socket.on('disconnect', () => {

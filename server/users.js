@@ -27,7 +27,6 @@ function userFromId (id) {
 }
 
 function getOtherUsers (id) {
-  console.log('getOtherUsers', users);
   return users.filter(user => user.id !== id);
 }
 
