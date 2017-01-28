@@ -16,7 +16,7 @@ This project was built during my Senior Phase at Fullstack Academy as a hackatho
 
 ## Demo
 
-[Live link](https://transcend.herokuapp.com/)
+[Live link](https://transcend-prototype.herokuapp.com/)
 
 ### On a Desktop:
 
